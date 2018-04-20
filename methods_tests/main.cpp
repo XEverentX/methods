@@ -1,12 +1,11 @@
 #include <iostream>
 #include <gradient_descent.hpp>
-#include <vector>
 
 float test_function(std::vector<float> values);
 
 int main() {
     auto initialValues = std::vector<float>{-10.0f, 10.0f, 5.25f};
-    auto method = methods::ConstGradientDescent(initialValues, test_function);
+    auto method = methods::ConstGradientDescent(initialValues, test_function, 1);
     auto results = method.optimize();
     std::cout << "Function result before: " << test_function(initialValues) << std::endl;
     for (float &value : results) {

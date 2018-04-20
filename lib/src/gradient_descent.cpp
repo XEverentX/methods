@@ -1,11 +1,15 @@
 #include <gradient_descent.hpp>
 #include <iostream>
 
-methods::ConstGradientDescent::ConstGradientDescent(const std::vector<float> &values,
-                                                    const methods::ConstGradientDescent::Function &function)
-        : m_values(values), m_function(function) {}
+methods::ConstGradientDescent::ConstGradientDescent(std::vector<float> values,
+                                                    methods::ConstGradientDescent::Function function,
+                                                    const float precision,
+                                                    const float delta,
+                                                    const float lambda)
+        : m_values(std::move(values)), m_function(std::move(function)), m_precision(precision), m_delta(delta),
+          m_lambda(lambda) {}
 
-methods::ConstGradientDescent::~ConstGradientDescent() {}
+methods::ConstGradientDescent::~ConstGradientDescent() = default;
 
 std::vector<float> methods::ConstGradientDescent::optimize() {
     auto resultValues = std::vector<float>();
@@ -35,6 +39,30 @@ std::vector<float> methods::ConstGradientDescent::optimize() {
         methods::subtract(currentValues, grad, resultValues);
     }
     return resultValues;
+}
+
+float methods::ConstGradientDescent::getM_delta() const {
+    return m_delta;
+}
+
+void methods::ConstGradientDescent::setM_delta(float m_delta) {
+    ConstGradientDescent::m_delta = m_delta;
+}
+
+float methods::ConstGradientDescent::getM_lambda() const {
+    return m_lambda;
+}
+
+void methods::ConstGradientDescent::setM_lambda(float m_lambda) {
+    ConstGradientDescent::m_lambda = m_lambda;
+}
+
+float methods::ConstGradientDescent::getM_precision() const {
+    return m_precision;
+}
+
+void methods::ConstGradientDescent::setM_precision(float m_precision) {
+    ConstGradientDescent::m_precision = m_precision;
 }
 
 void methods::subtract(std::vector<float> vec1, std::vector<float> vec2, std::vector<float> &result) {
