@@ -41,27 +41,27 @@ std::vector<float> methods::ConstGradientDescent::optimize() {
     return resultValues;
 }
 
-float methods::ConstGradientDescent::getM_delta() const {
+float methods::ConstGradientDescent::getDelta() const {
     return m_delta;
 }
 
-void methods::ConstGradientDescent::setM_delta(float m_delta) {
+void methods::ConstGradientDescent::setDelta(float m_delta) {
     ConstGradientDescent::m_delta = m_delta;
 }
 
-float methods::ConstGradientDescent::getM_lambda() const {
+float methods::ConstGradientDescent::getLambda() const {
     return m_lambda;
 }
 
-void methods::ConstGradientDescent::setM_lambda(float m_lambda) {
+void methods::ConstGradientDescent::setLambda(float m_lambda) {
     ConstGradientDescent::m_lambda = m_lambda;
 }
 
-float methods::ConstGradientDescent::getM_precision() const {
+float methods::ConstGradientDescent::getPrecision() const {
     return m_precision;
 }
 
-void methods::ConstGradientDescent::setM_precision(float m_precision) {
+void methods::ConstGradientDescent::setPrecision(float m_precision) {
     ConstGradientDescent::m_precision = m_precision;
 }
 

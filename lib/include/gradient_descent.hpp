@@ -25,17 +25,17 @@ namespace methods {
 
         std::vector<float> optimize() override;
 
-        float getM_delta() const;
+        float getDelta() const;
 
-        void setM_delta(float m_delta);
+        void setDelta(float m_delta);
 
-        float getM_lambda() const;
+        float getLambda() const;
 
-        void setM_lambda(float m_lambda);
+        void setLambda(float m_lambda);
 
-        float getM_precision() const;
+        float getPrecision() const;
 
-        void setM_precision(float m_precision);
+        void setPrecision(float m_precision);
 
         ~ConstGradientDescent() override;
 
