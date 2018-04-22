@@ -6,7 +6,10 @@ methods::ConstGradientDescent::ConstGradientDescent(std::vector<float> values,
                                                     const float precision,
                                                     const float delta,
                                                     const float lambda)
-        : m_values(std::move(values)), m_function(std::move(function)), m_precision(precision), m_delta(delta),
+        : m_values(std::move(values)),
+          m_function(std::move(function)),
+          m_precision(precision),
+          m_delta(delta),
           m_lambda(lambda) {}
 
 methods::ConstGradientDescent::~ConstGradientDescent() = default;
@@ -15,6 +18,8 @@ std::vector<float> methods::ConstGradientDescent::optimize() {
     auto resultValues = std::vector<float>();
     auto currentValues = std::vector<float>(m_values);
     auto grad = std::vector<float>();
+
+    // Calculating initial gradient
     for (float &currentValue : currentValues) {
         auto lowBorder = m_function(currentValues);
         currentValue += m_delta;
@@ -24,6 +29,7 @@ std::vector<float> methods::ConstGradientDescent::optimize() {
     }
     methods::subtract(currentValues, grad, resultValues);
 
+    // Main cycle of calculations
     while (std::abs(std::abs(m_function(resultValues)) - std::abs(m_function(currentValues))) > m_precision) {
         currentValues = resultValues;
         grad.clear();
@@ -66,6 +72,7 @@ void methods::ConstGradientDescent::setPrecision(float m_precision) {
 }
 
 void methods::subtract(std::vector<float> vec1, std::vector<float> vec2, std::vector<float> &result) {
+    result.clear();
     for (int i = 0; i < vec1.size(); i++) {
         result.push_back(vec1[i] - vec2[i]);
     }

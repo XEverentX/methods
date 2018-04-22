@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(include)
 
-add_library(optimization_lib src/gradient_descent.cpp include/gradient_descent.hpp)
+add_library(optimization_lib src/const_gradient_descent.cpp include/gradient_descent.hpp src/fractional_gradient_descent.cpp)
