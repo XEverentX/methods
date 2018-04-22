@@ -1,0 +1,26 @@
+language: cpp
+
+sudo: required
+
+before_script:
+  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-7 /usr/bin/gcc
+  - sudo unlink /usr/bin/g++ && sudo ln -s /usr/bin/g++-7 /usr/bin/g++
+  - mkdir cmake-build-release
+  - mkdir cmake-build-debug
+  - cd cmake-build-release
+  - cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_CC_COMPILER=gcc
+  - cd ../cmake-build-debug
+  - cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_CC_COMPILER=gcc
+  - cd ..
+script:
+  - cd cmake-build-release
+  - make
+  - cd ../cmake-build-debug
+  - make
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-7
+    - g++-7
